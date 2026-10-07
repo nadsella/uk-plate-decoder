@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UK Plate Decoder</title>
+<meta name="description" content="Decode any UK number plate: where it was registered, when, and what each character means.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..800&family=Barlow+Condensed:wght@600&family=IBM+Plex+Mono:wght@500&family=Public+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!--BODY-->
+<main class="wrap">
+  <header class="masthead">
+    <h1>UK Plate <span>Decoder</span></h1>
+    <p>Decoding against <span class="today" id="today"></span></p>
+  </header>
+
+  <section class="hero" aria-labelledby="hero-title">
+    <h2 id="hero-title">Type a number plate to see where and when it was registered</h2>
+    <div class="plate-row">
+      <div class="plate" id="plate">
+        <div class="band" aria-hidden="true">UK</div>
+        <input id="plate-input" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="9" placeholder="AB12 CDE" aria-label="Registration number">
+      </div>
+      <div class="plate-tools">
+        <div class="seg-toggle" role="group" aria-label="Plate style">
+          <button type="button" data-face="rear" aria-pressed="true">Rear</button>
+          <button type="button" data-face="front" aria-pressed="false">Front</button>
+        </div>
+        <button type="button" class="link-btn" id="copy-link">Copy link to this plate</button>
+      </div>
+    </div>
+    <div class="examples" id="examples"><span class="label">Try</span></div>
+  </section>
+
+  <section class="result" id="result" aria-live="polite"></section>
+
+  <section class="ref" aria-labelledby="age-title">
+    <div class="ref-head">
+      <h3 id="age-title">Age identifiers</h3>
+      <p>Since 2001 the two digits change twice a year. In March they match the year (25 = March 2025). In September they add 50 (75 = September 2025).</p>
+    </div>
+    <p class="next" id="next"></p>
+    <div class="calendar" id="calendar"></div>
+  </section>
+
+  <section class="ref" aria-labelledby="region-title">
+    <div class="ref-head">
+      <h3 id="region-title">Memory tags</h3>
+      <p>The first letter is the region. The second letter is the local DVLA office it was allocated to. I, Q, U and Z are never first letters.</p>
+    </div>
+    <div class="regions" id="regions"></div>
+  </section>
+
+  <footer>
+    <p>Office names are the original 2001 allocations. Most DVLA local offices closed in 2013, so newer plates show the region they were allocated to rather than where the car was sold.</p>
+    <p>This tool reads the format only. It doesn’t look up a vehicle’s make, tax or MOT. For that, use the <a href="https://vehicleenquiry.service.gov.uk/" rel="noopener">DVLA vehicle enquiry service</a>.</p>
+  </footer>
+</main>
+<div class="toast" id="toast" role="status" hidden></div>
+<script src="decoder.js"></script>
+<script src="app.js"></script>
+<!--/BODY-->
+</body>
+</html>
